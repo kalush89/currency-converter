@@ -4,12 +4,12 @@ self.addEventListener('install', function(event) {
   event.waitUntil(
     caches.open(staticCacheName).then(function(cache) {
       return cache.addAll([
-        '/',
-        'build/main.bundle.js',
-        'css/styles.css',
-        'https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css',
-        'http://fonts.googleapis.com/css?family=Roboto:400,300,700',
-        'https://free.currencyconverterapi.com/api/v5/currencies'
+        './',
+        './build/main.bundle.js',
+        './css/styles.css',
+        './https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css',
+        './https://fonts.googleapis.com/css?family=Roboto:400,300,700',
+        './https://free.currencyconverterapi.com/api/v5/currencies'
       ]);
     })
   );
@@ -34,8 +34,8 @@ self.addEventListener('fetch', function(event) {
   var requestUrl = new URL(event.request.url);
 
   if (requestUrl.origin === location.origin) {
-    if (requestUrl.pathname === '/') {
-      event.respondWith(caches.match('/'));
+    if (requestUrl.pathname === './') {
+      event.respondWith(caches.match('./'));
       return;
     }
   }
