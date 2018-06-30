@@ -124,7 +124,7 @@ function convertCurrency() {
 const registerServiceWorker = () => {
   if (!navigator.serviceWorker) return;
 
-  navigator.serviceWorker.register('/cc-sw.js').then( reg => {
+  navigator.serviceWorker.register('cc-sw.js').then( reg => {
 
     console.log('Service worker is registered');
 /*
