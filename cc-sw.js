@@ -5,7 +5,7 @@ self.addEventListener('install', function(event) {
     caches.open(staticCacheName).then(function(cache) {
       return cache.addAll([
         './',
-        './build/main.bundle.js',
+        './js/main.js',
         './css/styles.css',
         './https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css',
         './https://fonts.googleapis.com/css?family=Roboto:400,300,700',
