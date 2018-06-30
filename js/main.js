@@ -1,9 +1,15 @@
+/*
+collect currencies
+convert currecies
+save conversion parameters to idb
+convert currencies offline
+*/
 const selectFrom = document.querySelector('#fromCurrency');
 const selectTo = document.querySelector('#toCurrency');
 //fromCurrency = document.getElementById('fromCurrency');
 
 //document.getElementById("monthlyPayment").innerHTML = monthlyPayment.toFixed(2);
-const url = 'https://free.currencyconverterapi.com/api/v5/currencies';
+const url = `https://free.currencyconverterapi.com/api/v5/currencies`;
 
 fetch(url)
 .then(response => {
@@ -34,57 +40,91 @@ console.log('results',results);
     console.error('Fetch Error -', err);
 });
 
-function convertCurrency(amount, fromCurrency, toCurrency, cb) {
+/*const url = 'https://free.currencyconverterapi.com/api/v5/countries';
+
+   fetch(url)
+       .then(res => res.json())
+       .then(data => {
+           let currencyNames = data.results;
+           for (let currency in currencyNames) {
+               const option = document.createElement('option');
+               option.innerHTML = currencyNames[currency].currencyId;
+               document.getElementById("currency-names").appendChild(option);
+           }
+       })
+    .catch(function(error) {
+        console.log (error);
+    });*/
+
+function convertCurrency() {
+
+  let fromCurrency = document.getElementById("fromCurrency").value;
+  let toCurrency = document.getElementById("toCurrency").value;
+  let amount = document.getElementById("amount").value;
+  let query = `${fromCurrency}_${toCurrency}`;
+  //inverse exchange
+  let backQuery = `${toCurrency}_${fromCurrency}`;
 
 
-  fromCurrency = encodeURIComponent(fromCurrency);
-  toCurrency = encodeURIComponent(toCurrency);
-  let query = `fromCurrency_toCurrency`;
-  let backQuery = fromCurrency;
-  let url = 'https://free.currencyconverterapi.com/api/v5/convert?q=' + query + '&compact=ultra';
+  let url = `https://free.currencyconverterapi.com/api/v5/convert?q=${query}&compact=ultra`;
 
     fetch(url).then(response => {
-    if(response.status !== 200){
-        console.warn('Looks like there was a problem. Status Code:' + response.status);
-        return;
-    }
+
         response.json().then(res => {
 
             let val = res[query];
+
             if(val){
+              //get inverse exchange rate
+              let backVal = 1 / val;
+              dbPromise.then(db => {
+                let tx = db.transaction('currencyX', 'readwrite');
+                let theStore = tx.objectStore('currencyX');
+              theStore.put({id: query, rate: val});
+              theStore.put({id: backQuery, rate: backVal});
+            }).then(db => {
+              console.log('Exchange rates entered');
+            });
+              console.log(val);
                 let total = val * amount;
-                cb(null, Math.round(total * 100) / 100);
+
                 console.log(total);
+                document.getElementById("equiv").innerHTML = total.toFixed(2);
+                /*let rate = `${Object.values(res)}`;
+                let m = Number(k.toString());
+                console.log(input_amount * m);
+                document.getElementById('forex_value').value = input_amount * m;*/
 
             } else {
                 console.log('Value not found for ', query);
-                console.log(err);
-                cb(err);
+              //  console.log(err);
+              //  cb(err);
             }
 
             });
         }).catch(function (err){
+          dbPromise.then(db => {
+            return db.transaction('currencyX')
+              .objectStore('currencyX').get(query);
+          }).then(obj => {
+            console.log('from idb',obj);
+            let total = obj.rate * amount;
+
+            console.log(total);
+            document.getElementById("equiv").innerHTML = total.toFixed(2);
+          console.log('Successfully calculated from idb');
+        });
     console.error('Fetch Error -', err);
 });
 
 
 }
 
-document.getElementById('calcBtn').addEventListener('click', function () {
-    let fromCurrency = document.getElementById("fromCurrency").value;
-    let toCurrency = document.getElementById("toCurrency").value;
-    let amount = document.getElementById("amount").value;
-    convertCurrency(amount, fromCurrency, toCurrency, function(err, amount){
-        document.getElementById("equiv").innerHTML = amount;
-    });
-
-});
-
 // Service worker registration
 const registerServiceWorker = () => {
   if (!navigator.serviceWorker) return;
 
-  navigator.serviceWorker.register('./cc-sw.js').then( reg => {
+  navigator.serviceWorker.register('/cc-sw.js').then( reg => {
 
     console.log('Service worker is registered');
 /*
