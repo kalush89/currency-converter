@@ -4,7 +4,7 @@ self.addEventListener('install', function(event) {
   event.waitUntil(
     caches.open(staticCacheName).then(function(cache) {
       return cache.addAll([
-        './',
+        './https://github.com/kalush89/currency-converter',
         './js/main.js',
         './css/styles.css',
         './https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css',
@@ -34,8 +34,8 @@ self.addEventListener('fetch', function(event) {
   var requestUrl = new URL(event.request.url);
 
   if (requestUrl.origin === location.origin) {
-    if (requestUrl.pathname === './') {
-      event.respondWith(caches.match('./'));
+    if (requestUrl.pathname === './https://github.com/kalush89/currency-converter') {
+      event.respondWith(caches.match('./https://github.com/kalush89/currency-converter'));
       return;
     }
   }
