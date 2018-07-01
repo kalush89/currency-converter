@@ -85,8 +85,6 @@ let sortedResults = Object.values(res.results);//.sort((a, b) =>{a.res.results.c
                   option2.appendChild(document.createTextNode(result.currencyName));
                   selectFrom.appendChild(option1);
                   selectTo.appendChild(option2);
-
-console.log('result', result);
           }
 
         }).catch(err =>{
