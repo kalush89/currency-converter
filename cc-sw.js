@@ -9,6 +9,7 @@ self.addEventListener('install', event => {
         './css/styles.css',
         'https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css',
         'https://fonts.googleapis.com/css?family=Roboto:400,300,700',
+        'https://fonts.googleapis.com/css?family=Fredoka+One',
         'https://free.currencyconverterapi.com/api/v5/currencies'
       ]);
     })
