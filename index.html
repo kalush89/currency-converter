@@ -7,27 +7,26 @@
     <link href='https://fonts.googleapis.com/css?family=Roboto:400,300,700' rel='stylesheet' type='text/css'>
     <link href="https://fonts.googleapis.com/css?family=Fredoka+One" rel="stylesheet">
     <link href="./css/styles.css" rel="stylesheet" type="text/css">
+    <link rel="shortcut icon" type="image/png" href="./images/favicon.png"/>
 </head>
 <body>
 
-      <div class="row">
-        <header>
-          <h1>Currency Converter</h1>
-        </header>
-      </div>
-
-    <div class="container">
-
-   <div class="row" id="output">
-      <div class="col-xs-6">
-        <div class="well well-lg"><h3><span id="equiv" class="border border-red"></span></h3></div>
-      </div>
-        <div class="col-xs-6">
-            <div class="well well-sm"><h3><span id="rate" class="border border-red"></span></h3></div>
+   <nav class="navbar navbar-custom" role="navigation">
+    <div class="container-fluid">
+      <div class="navbar-header">
+        <a class="navbar-brand" href="#">
+          currency converter
+        </a>
       </div>
     </div>
+  </nav>
+<div class="container">
+  <div class="row" id="output">
+    <div class="col-xs-12">
+      <div class="well well-sm"><h3><span id="equiv" class="border border-red"></span></h3></div>
+    </div>
+  </div>
     <div class="row" id="select">
-
       <div class="col-xs-6" >
         <label>From:</label>
          <select id ="fromCurrency" class="form-control" ></select>
@@ -40,7 +39,7 @@
     <div class="row" id="amountEntry">
 
       <div class="col-xs-8" >
-        <input type="text" id="amount" class="form-control" placeholder="Amount">
+        <input type="text" id="amount" class="form-control" placeholder="Amount" required>
       </div>
       <div class="col-xs-4">
         <button class="btn btn-success btn-block" id="calcBtn">Convert</button>
