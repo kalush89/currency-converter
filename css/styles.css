@@ -3,6 +3,7 @@ body {
     font-size: 16px;
     padding: 0;
     margin: 0;
+    background-color: silver;
 }
 
 header {
@@ -10,14 +11,43 @@ header {
   background-color: #03A9F4;
   padding: 14px;
   box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
-  font-weight: 300;
-  font-size: 24px;
+  font-size: 10px;
   margin: 0;
   color: #FFFFFF;
 }
+.navbar-custom { background-color: #006666 !important; }
+.navbar-header {
+    font-family: 'Fredoka One', cursive;
+    float: left;
+    padding: 15px;
+    text-align: center;
+    width: 100%;
+
+}
+.navbar-brand {
+  float:none;
+  color: #fff;
+}
+.navbar-brand, a:hover, a:focus{
+  color: #f2f2f2  !important;;
+}
+.container{
+
+  background-color:white;
+  border-radius: 3px;
+  position: relative;
+    box-shadow: 1px 2px 4px rgba(0, 0, 0, .5);
+    padding: 10px;
+  width: 50%;
+  margin-top: 60px;
+  padding-bottom: 50px;
+
+}
+
 
 #output{
   margin-top: 10px;
+  display: inline;
 }
 #select{
   margin-top: 10px;
