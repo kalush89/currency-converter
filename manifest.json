@@ -18,9 +18,9 @@
       "sizes": "1024x1024"
     }
   ],
-  "start_url": "/index.html/",
+  "start_url": "/currency-converter/",
   "background_color": "#006666",
   "display": "standalone",
-  "scope": "/index.html/",
+  "scope": "/currency-converter/",
   "theme_color": "#006666"
 }
