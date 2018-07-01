@@ -1,0 +1,26 @@
+{
+  "short_name": "C-converter",
+  "name": "Currency converter",
+  "icons": [
+    {
+      "src": "/images/favicon.ico",
+      "type": "image/icon",
+      "sizes": "192x192"
+    },
+    {
+      "src": "/images/favicon-256.png",
+      "type": "image/png",
+      "sizes": "256x256"
+    },
+    {
+      "src": "/images/favicon-1024.png",
+      "type": "image/png",
+      "sizes": "1024x1024"
+    }
+  ],
+  "start_url": "/index.html/",
+  "background_color": "#006666",
+  "display": "standalone",
+  "scope": "/index.html/",
+  "theme_color": "#006666"
+}
