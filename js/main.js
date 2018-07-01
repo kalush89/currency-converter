@@ -135,4 +135,4 @@ convertCurrency(from, to, amount){
         });
     }
 
-}//end class Currency converter
+}//end class Main
