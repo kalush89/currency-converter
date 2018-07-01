@@ -48,13 +48,6 @@ class Main{
        return;
      }
 
-     if (reg.installing) {
-       if (reg.state == 'installed') {
-         this.skipWaiting();
-       }
-       return;
-     }
-
    // Ensure refresh is only called once.
    // This works around a bug in "force update on reload".
    let refreshing;
